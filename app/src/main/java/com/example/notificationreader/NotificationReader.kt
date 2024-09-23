@@ -93,7 +93,7 @@ class NotificationReader : NotificationListenerService(), TextToSpeech.OnInitLis
         playNotificationSound()
 
         // Check if the notification is from WhatsApp or Instagram
-        if (isWhatsAppNotification(sbn) || isInstagramNotification(sbn)) {
+        if (isWhatsAppNotification(sbn) || isInstagramNotification(sbn) || isGooglePayPaymentNotification(sbn)) {
             // Speak out the content of the notification
             speakNotification(notification)
 
@@ -126,6 +126,10 @@ class NotificationReader : NotificationListenerService(), TextToSpeech.OnInitLis
      */
     private fun isInstagramNotification(sbn: StatusBarNotification): Boolean {
         return sbn.packageName == "com.instagram.android"
+    }
+
+    private fun isGooglePayPaymentNotification(sbn: StatusBarNotification): Boolean {
+        return sbn.packageName == "com.google.android.apps.walletnfcrel"
     }
 
     /**
